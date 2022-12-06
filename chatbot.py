@@ -13,8 +13,8 @@ reddit_data_encoding = joblib.load("reddit_parent_id_embedding_map.pkl")
 
 saved_model = ClassificationModel(model_type='roberta', model_name='outputs/model/', use_cuda=False)
 
-REDDIT = pysolr.Solr('http://34.130.44.231:8983/solr/reddit_bm25')
-CHITCHAT = pysolr.Solr('http://34.130.44.231:8983/solr/chitchat')
+REDDIT = pysolr.Solr('http://34.130.189.193:8983/solr/reddit_bm25')
+CHITCHAT = pysolr.Solr('http://34.130.189.193:8983/solr/chitchat')
 
 def query_chatbot(query, topic=None):
     q_embedding = sentence_encoder_model.encode(query)
