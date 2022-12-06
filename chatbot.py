@@ -5,6 +5,8 @@ from simpletransformers.classification import ClassificationModel
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
+from analysis import storeChat
+
 sentence_encoder_model = SentenceTransformer('bert-base-nli-mean-tokens')
 
 tfidf = joblib.load("tfidif_normalized_dict.pkl")
@@ -21,6 +23,7 @@ def query_chatbot(query, topic=None):
     final_query = ""
     prediction = saved_model.predict([query])
     reply = ""
+    score = 0
     if prediction[0][0] == 1 and not topic:
         params = {
             "defType": "edismax",
@@ -40,7 +43,9 @@ def query_chatbot(query, topic=None):
 
             im_arr = cosine_similarity([q_embedding], result_encodings)
             top_idx = np.argmax(im_arr)
+            score = docs[top_idx].get("score", 10)
             reply = docs[top_idx].get("reply", "")
+        storeChat(query, reply, "Chit Chat", score)
     else:
         params = {
             "defType": "edismax",
@@ -62,13 +67,36 @@ def query_chatbot(query, topic=None):
             result_encodings = [reddit_data_encoding[c["parent_id"]] for c in docs]
             im_arr = cosine_similarity([q_embedding], result_encodings)
             top_idx = np.argmax(im_arr)
-            if docs[top_idx].get("score", 10) < 4:
-                reply = "Didn't understood you"
-            else:
-                reply = docs[top_idx].get("body", "")
+            score = docs[top_idx].get("score", 10)
+            reply = docs[top_idx].get("body", "")
+        if topic.strip() == "":
+            topic = "Reddit"
+        storeChat(query, reply, topic, score)
 
-    if reply.strip() == "":
-        reply = "I didn't understand that"
+    if reply.strip() == "" and False:
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+        import torch
+        chat_history_ids = []
+
+        tokenizer = AutoTokenizer.from_pretrained(
+            "microsoft/DialoGPT-medium")
+        model = AutoModelForCausalLM.from_pretrained(
+            "microsoft/DialoGPT-medium")
+
+        new_user_input_ids = tokenizer.encode(query + tokenizer.eos_token,
+                                              return_tensors='pt')
+
+        # append the new user input tokens to the chat history
+        bot_input_ids = new_user_input_ids
+
+        # generated a response while limiting the total chat history to 1000 tokens,
+        chat_history_ids = model.generate(bot_input_ids,
+                                          max_length=1000,
+                                          pad_token_id=tokenizer.eos_token_id)
+        # pretty print last ouput tokens from bot
+        reply = tokenizer.decode(
+            chat_history_ids[:, bot_input_ids.shape[-1]:][0],
+            skip_special_tokens=True)
     return reply
 
 
