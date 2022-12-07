@@ -1,0 +1,166 @@
+.App {
+  background-color: #282c34;
+  text-align: center;
+  color: aliceblue;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.nav {
+  display: flex;
+  margin-left: 806%;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Background{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image{
+  background: url("./bgimage.png");
+  margin-top: 31px;
+  height: 685px;
+  width: 765px;
+  opacity: 0.1;
+  margin-left: 26%;
+  scroll-behavior: smooth
+}
+
+.inputs{
+  /* display: flex; */
+  display: "grid";
+  grid-template-columns: "1fr 1fr";
+}
+
+.inputBox{
+  position: absolute;
+  bottom: -25px;
+  left: 490px;
+  width: 500px;
+  height: 62px;
+  box-sizing: border-box;
+  box-shadow: grey 0px 0px 8px 2px;
+  border-radius: 30px;
+  margin-left: 10px;
+}
+
+.submit{
+  position: absolute;
+  bottom: -16px;
+  right: 447px;
+  height: 49px;
+  border-radius: 7px;
+  box-sizing: border-box;
+  box-shadow: grey 0px 0px 8px 2px;
+}
+
+.chatScreen{
+  border: 2px grey solid;
+  box-shadow: grey 0px 0px 8px 2px;
+  position: absolute;
+  top: 90px;
+  left: 30.5%;
+  height: 610px;
+  width: 630px;
+  overflow: auto;
+  scroll-behavior: auto;
+  margin-bottom: 150px;
+}
+
+.setBotImage{
+  /* height: 20px;
+  width: 20px; */
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 5px;
+  width: 31px;
+}
+
+.setUserImage{
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  padding: 5px;
+  width: 31px;
+}
+
+.response{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: grey 0px 0px 21px -4px;
+}
+.botResponse{
+  margin-left: 20px;
+  /* background-color: #8080807d; */
+  display: flex;
+  border-radius: 6px;
+  box-shadow: grey 0px 0px 21px -4px
+}
+
+.queries{
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: flex-end;
+  box-shadow: grey 0px 0px 21px -4px;
+}
+
+.userResponse{
+  margin-right: 20px;
+  /* background-color: #8080807d; */
+  display: flex;
+  border-radius: 6px;
+  box-shadow: grey 0px 0px 21px -4px
+}
+
+.options{
+  margin-top: 63px;
+  background-color: #282c34;
+  color: black;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  grid-column: span;
+}
+
+.label {
+  margin-right: 20px;
+}

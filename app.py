@@ -7,13 +7,14 @@ from chatbot import query_chatbot
 app = Flask(__name__)
 CORS(app)
 
+PREDEFINED_TOPIC = ["Politics", "Education", "Technology", "Environment", "Healthcare", "All", ""]
 
 @app.route("/query",methods=['POST'])
 def execute():
-
     query = request.json.get('query', "")
-    topics = request.json.get('topics', "")
+    topics = request.json.get('topics', [])
 
+    topics = list(set(topics).intersection(PREDEFINED_TOPIC))
     response = query_chatbot(query, topics)
 
     return {
