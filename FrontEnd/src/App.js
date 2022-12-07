@@ -4,10 +4,12 @@ import axios from "axios";
 import {Circles} from 'react-loader-spinner'
 
 function App() {
-
+  const openInNewTab = url => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
   const [userText, setUserText] = useState('');
   const [loading, setLoading] = useState('');
-  const [all, setAll] = useState({name: 'All', value: false});
+  const [all, setAll] = useState({name: 'All', value: true});
   const [politics, setPolitics] = useState({name: 'Politics', value: false});
   const [education, setEducation] = useState({name: 'Education', value: false});
   const [healthcare, setHealthcare] = useState({name: 'Healthcare', value: false});
@@ -38,16 +40,29 @@ function App() {
     setLoading(true);
     const topic = [];
     if(politics.value){
+      setAll({...all, value:false})
       topic.push(politics.name);
     } if(education.value){
+                 setAll({...all, value:false})
+
+
       topic.push(education.name);
     }if(technology.value){
+                 setAll({...all, value:false})
+
+
       topic.push(technology.name);
     }
     if(healthcare.value){
+                  setAll({...all, value:false})
+
+
       topic.push(healthcare.name);
     }
     if(environment.value){
+                  setAll({...all, value:false})
+
+
       topic.push(environment.name);
     }
     if(all.value){
@@ -79,22 +94,37 @@ function App() {
 
   const onCheckboxHandler = (event) => {
     // const val = event.value;
+
     if(event.name === "Politics"){
+            setAll({...all, value:false})
+
       setPolitics({...politics, value: event.value});
     } else if(event.name === "Environment"){
+            setAll({...all, value:false})
+
       setEnvironment({...environment, value: event.value});
     }
     else if(event.name === "Technology"){
+       setAll({...all, value:false})
       setTechnology({...technology, value: event.value});
     }
     else if(event.name === "Healthcare"){
+       setAll({...all, value:false})
       setHealthcare({...healthcare, value: event.value});
     }
     else if(event.name === "Education"){
+       setAll({...all, value:false})
       setEducation({...education, value: event.value});
     }
     else if(event.name === "All"){
-      setEducation({...all, value: event.value});
+      if(event.value === true){
+        setTechnology({...technology, value: false})
+        setHealthcare({...healthcare, value: false})
+        setEnvironment({...environment, value: false})
+        setEducation({...education, value: false})
+        setPolitics({...politics, value: false})
+      }
+      setAll({...all, value: event.value});
     }
   }
   return (
@@ -105,32 +135,44 @@ function App() {
         <nav className='nav'>CHATBOT</nav>
       </div>
       <div className='options'>
-      <label className='label' onClick={() => onCheckboxHandler({name: "All", value: !all.value})}>
-          <input type="checkbox" value={all} />
+      <label className='label' >
+          <input type="checkbox"  checked={all.value}
+                 onChange={() => onCheckboxHandler({name: "All", value: !all.value})}/>
           All (default)
         </label>
-        <label className='label' onClick={() => onCheckboxHandler({name: "Politics", value: !politics.value})}>
-          <input type="checkbox" value={politics} />
+        <label className='label' >
+          <input type="checkbox" checked={politics.value}
+          onChange={() => onCheckboxHandler({name: "Politics", value: !politics.value})}/>
           Politics
         </label>
-        <label className='label' onClick={() => onCheckboxHandler({name: "Education", value: !education.value})}>
-          <input type="checkbox" value={education}  />
+        <label className='label' >
+          <input type="checkbox" checked={education.value}
+          onChange={() => onCheckboxHandler({name: "Education", value: !education.value})}/>
           Education
         </label>
-        <label className='label' onClick={() => onCheckboxHandler({name: "Healthcare", value: !healthcare.value})}>
-          <input type="checkbox" value={healthcare}  />
+        <label className='label' >
+          <input type="checkbox" checked={healthcare.value}
+          onChange={() => onCheckboxHandler({name: "Healthcare", value: !healthcare.value})}/>
           Healthcare
         </label>
-        <label className='label' onClick={() => onCheckboxHandler({name: "Technology", value: !technology.value})}>
-          <input type="checkbox" value={technology}  />
+        <label className='label' >
+          <input type="checkbox" checked={technology.value}
+          onChange={() => onCheckboxHandler({name: "Technology", value: !technology.value})}/>
           Technology
         </label>
-        <label className='label' onClick={() => onCheckboxHandler({name: "Environment", value: !environment.value})}>
-          <input type="checkbox" value={environment}  />
+        <label className='label' >
+          <input type="checkbox" checked={environment.value}
+          onChange={() => onCheckboxHandler({name: "Environment", value: !environment.value})}/>
           Environment
         </label>
 
       </div>
+
+      <button
+        onClick={() => openInNewTab('https://public.tableau.com/app/profile/sakshi.singhal5370/viz/sakshi_16703798725510/Dashboard1')}
+        style={{backgroundColor: "#fff", float: "right", cursor: "pointer"}}  >
+        GO TO TABLEAU
+      </button>
     </div>
 
     <div className="image">
