@@ -138,7 +138,7 @@ function App() {
         </nav>
       </div>
         <div style={{display: "flex", justifyContent:"flex-end", marginRight: '1%'}}>
-        <a href='#viz1670466164634' style={{textDecoration: "none"}} ><button className='tableauBtn'
+        <a href='#viz1670468063532' style={{textDecoration: "none"}} ><button className='tableauBtn'
         >
             GO TO TABLEAU
         </button></a>
