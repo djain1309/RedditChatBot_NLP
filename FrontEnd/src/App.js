@@ -2,6 +2,9 @@ import './App.css';
 import React, {useState, useRef, useEffect} from "react";
 import axios from "axios";
 import {Circles} from 'react-loader-spinner'
+import Button from '@mui/material/Button';
+
+import TextField from '@mui/material/TextField';
 
 function App() {
   const openInNewTab = url => {
@@ -127,15 +130,22 @@ function App() {
       setAll({...all, value: event.value});
     }
   }
-  return (
-  <React.Fragment>
-    <div className="App">
-      
-      <div className="Background">
-        <nav className='nav'>CHATBOT</nav>
+  return (<>
+    <div>
+      <div style={{display: "flex"}} className="nav">
+        <nav>
+          CHATBOT
+        </nav>
       </div>
+        <button className='tableauBtn'
+        onClick={() => openInNewTab('https://public.tableau.com/views/CHATBOT_16704560289110/CHATBOT?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link')}
+        >
+            GO TO TABLEAU
+        </button>
+      </div>
+      <div style={{display: "flex", justifyContent: "center"}}>
       <div className='options'>
-      <label className='label' >
+       <label className='label' >
           <input type="checkbox"  checked={all.value}
                  onChange={() => onCheckboxHandler({name: "All", value: !all.value})}/>
           All (default)
@@ -165,24 +175,10 @@ function App() {
           onChange={() => onCheckboxHandler({name: "Environment", value: !environment.value})}/>
           Environment
         </label>
-
       </div>
-
-      <button
-        onClick={() => openInNewTab('https://public.tableau.com/app/profile/sakshi.singhal5370/viz/sakshi_16703798725510/Dashboard1')}
-        style={{backgroundColor: "#fff", float: "right", cursor: "pointer"}}  >
-        GO TO TABLEAU
-      </button>
-    </div>
-
-    <div className="image">
-    </div>
-
-    <div className="chatScreen">
-      <div style={{paddingTop : "20px"}}>
       </div>
-
-    {chat.map((text, index) => {
+      <div className='chatBoxlayout'>
+      {chat.map((text, index) => {
       return (<div key={index}>
         {index%2!==0 ? 
         
@@ -202,16 +198,26 @@ function App() {
     </div>: null}
         </div>)
     })}
+    
   {loader}
   <div ref={messagesEndRef} />  
-    </div>
-      <form className='inputs'>
-        <input type="text" className="inputBox" onChange={onChangeHandler} value={userText} />
-        
-        <button type="submit" className='submit' onClick={onClickHandler}> ENTER </button>
+      </div>
+      
+      <form className='inputs' onSubmit={onClickHandler}>
+        {/* <input type="text" className="inputBox" 
+        onChange={onChangeHandler} value={userText} /> */}
+
+        <TextField id="outlined-basic" 
+          label="Hit Enter to send" 
+          variant="outlined" width='450' 
+          style={{marginTop: "10px", width:"42%", marginLeft: "2%"}}
+          value={userText}
+          onChange={onChangeHandler}
+           />
+           <Button onClick={onClickHandler}>SEND</Button>
+        {/* <button type="submit" className='submit' onClick={onClickHandler}> ENTER </button> */}
       </form>
-  </React.Fragment>
-   
+      </>
   );
 }
 

@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
   font-weight: bolder;
+  align-items: center;
 }
 
 .App-logo {
@@ -20,8 +21,14 @@
 }
 
 .nav {
+  background-color: #282c34;
+  text-align: center;
+  color: aliceblue;
+  height: 60px;
   display: flex;
-  margin-left: 806%;
+  justify-content: center;
+  font-weight: bolder;
+  align-items: center;
 }
 
 .App-header {
@@ -65,17 +72,21 @@
 }
 
 .inputs{
-  /* display: flex; */
+  display: flex;
   display: "grid";
   grid-template-columns: "1fr 1fr";
+  justify-content: center;
 }
 
 .inputBox{
-  position: absolute;
+  /* position: absolute;
   bottom: -25px;
   left: 490px;
+   */
+   height: 62px;
+   margin-top: 10px;
   width: 500px;
-  height: 62px;
+  display: flex;
   box-sizing: border-box;
   box-shadow: grey 0px 0px 8px 2px;
   border-radius: 30px;
@@ -125,14 +136,14 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  box-shadow: grey 0px 0px 21px -4px;
+  /* box-shadow: grey 0px 0px 21px -4px; */
 }
 .botResponse{
   margin-left: 20px;
   /* background-color: #8080807d; */
   display: flex;
   border-radius: 6px;
-  box-shadow: grey 0px 0px 21px -4px
+  /* box-shadow: grey 0px 0px 21px -4px */
 }
 
 .queries{
@@ -149,12 +160,11 @@
   /* background-color: #8080807d; */
   display: flex;
   border-radius: 6px;
-  box-shadow: grey 0px 0px 21px -4px
+  /* box-shadow: grey 0px 0px 21px -4px */
 }
 
 .options{
-  margin-top: 63px;
-  background-color: #282c34;
+  background-color: #fff;
   color: black;
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
@@ -163,4 +173,28 @@
 
 .label {
   margin-right: 20px;
+}
+.tableauBtn {
+  display: flex;
+  border-radius: 9px;
+  background-color: antiquewhite;
+  justify-content: flex-end;
+  cursor: pointer;
+  /* display: 'flex', justifyContent: 'flex-end' */
+}
+
+.chatBoxlayout {
+  border: red 2px solid;
+  height: 550px;
+  margin: 0 27%;
+  border: 2px grey solid;
+  box-shadow: grey 0px 0px 8px 2px;
+  /* position: absolute;
+  top: 90px;
+  left: 30.5%;
+  height: 610px;
+  width: 630px; */
+  overflow: auto;
+  scroll-behavior: auto;
+  /* margin-bottom: 150px; */
 }
