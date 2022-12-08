@@ -137,11 +137,14 @@ function App() {
           CHATBOT
         </nav>
       </div>
-        <button className='tableauBtn'
+        <div style={{display: "flex", justifyContent:"flex-end", marginRight: '1%'}}>
+            <button className='tableauBtn'
         onClick={() => openInNewTab('https://public.tableau.com/views/CHATBOT_16704560289110/CHATBOT?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link')}
         >
             GO TO TABLEAU
         </button>
+        </div>
+
       </div>
       <div style={{display: "flex", justifyContent: "center"}}>
       <div className='options'>
