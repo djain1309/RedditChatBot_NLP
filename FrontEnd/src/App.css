@@ -176,10 +176,13 @@
 }
 .tableauBtn {
   display: flex;
-  border-radius: 9px;
-  background-color: antiquewhite;
-  justify-content: flex-end;
-  cursor: pointer;
+    border-radius: 9px;
+    background-color: antiquewhite;
+    justify-content: flex-end;
+    cursor: pointer;
+    width: 130px;
+    height: 40px;
+    align-items: center;
   /* display: 'flex', justifyContent: 'flex-end' */
 }
 
